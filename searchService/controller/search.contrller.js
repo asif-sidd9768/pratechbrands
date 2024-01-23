@@ -25,7 +25,12 @@ searchProduct = async (req, res) => {
   const { query } = req.query;
 
   if (!query) {
-    return res.status(400).json({ error: 'Query parameter "q" is required.' });
+    const response = await client.search({
+      index: indexName, // Replace with your actual index name
+      size: 1000
+    });
+    const results = response.hits.hits.map(hit => hit._source);
+    return res.status(200).json({message: "Successfully retrieved the products",results});
   }
   try {
     const response = await client.search({

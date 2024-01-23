@@ -20,7 +20,7 @@ const addProductToUserCart = async (newProductId, userId) => {
 
 const removeProductFromCart = async (productToRemoveId,  userId) => {
   const user = await User.findById(userId)
-  const isProductExists = user.cart.find(({productId}) => productId === productToUpdate)
+  const isProductExists = user.cart.find(({productId}) => productId === productToRemoveId)
   if(!isProductExists){
     throw new ExpressError("Product is not in cart", 404)
   }

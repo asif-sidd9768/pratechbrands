@@ -20,7 +20,10 @@ const initIndex = async () => {
         return client.index({
           index: indexName,
           type: 'product', // Assuming 'product' is the type for your documents
-          body: product,
+          body: {
+            price: { type: 'float' },
+            ...product
+          },
           refresh: true
         });
       });
