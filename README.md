@@ -79,7 +79,7 @@ This repository hosts the backend services for a versatile e-commerce applicatio
    cd checkoutService && npm install
    cd searchService && npm install
 
-3. Install packages for middleware in the roo
+3. Install packages for middleware in the root directory
    ```bash
    npm install
 
