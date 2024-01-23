@@ -8,7 +8,7 @@ This repository hosts the backend services for a versatile e-commerce applicatio
 2. [Cart Service](#cart-service)
 3. [Order Service](#order-service)
 4. [Catalog Service](#catalog-service)
-5. [Search Service (Optional)](#search-service-optional)
+5. [Search Service](#search-service-optional)
 
 ## Authentication Service
 
@@ -55,7 +55,7 @@ This repository hosts the backend services for a versatile e-commerce applicatio
 - `/api/catalog/products` - Get all products (can be paginated and filtered using query)
 - `/api/catalog/categories` - POST Add product 
 
-## Search Service (Optional)
+## Search Service
 
 ### Features
 - Search products by title
@@ -69,4 +69,4 @@ This repository hosts the backend services for a versatile e-commerce applicatio
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/your-repo.git
+   git clone https://github.com/asif-sidd9768/pratechbrands
