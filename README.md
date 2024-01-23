@@ -65,8 +65,35 @@ This repository hosts the backend services for a versatile e-commerce applicatio
 - `/api/documents/search` - Search for products by title using query
 - `/api/search/add` - Add a new product to the search indices
 
-## Installation
+## Installation & Run
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/asif-sidd9768/pratechbrands
+   cd pratechbrands
+
+2. Install packages
+   ```bash
+   cd userService && npm install
+   cd catalogService && npm install
+   cd checkoutService && npm install
+   cd searchService && npm install
+
+3. Install packages for middleware in the roo
+   ```bash
+   npm install
+
+4. Run rabbitMQ using docker
+   ```bash
+   docker run -p 5672:5672 rabbitmq
+
+5. Run elastic search using docker
+   ```bash
+   docker run -p 127.0.0.1:9200:9200 -p 127.0.0.1:9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.17.16
+
+6. Run microservices
+   ```bash
+   cd userService && nodemon server.js
+   cd catalogService && nodemon server.js
+   cd checkoutService && nodemon server.js
+   cd searchService && nodemon server.js
