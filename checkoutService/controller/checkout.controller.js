@@ -1,4 +1,3 @@
-const Order = require("../model/Order")
 const { createOrder } = require("../utils/checkout.utils")
 const messageBroker = require("../utils/messageBroker")
 
