@@ -65,6 +65,9 @@ This repository hosts the backend services for a versatile e-commerce applicatio
 - `/api/documents/search` - Search for products by title using query
 - `/api/search/add` - Add a new product to the search indices
 
+## For detailed API use check below Postman link:
+[E-Commerce Microservices Backend](https://documenter.getpostman.com/view/15134954/2s9YymJRCo)
+
 ## Installation & Run
 
 1. Clone the repository:
