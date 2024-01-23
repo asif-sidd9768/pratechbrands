@@ -1,6 +1,6 @@
 # Backend Microservices E-commerce Application
 
-This repository contains the backend services for an e-commerce application built with Express, MongoDB, and Mongoose.
+This repository hosts the backend services for a versatile e-commerce application, developed with Express, MongoDB, Mongoose, and Elasticsearch. It adopts a microservices architecture, where various components handle user authentication, shopping cart management, order processing, and product catalog organization. RabbitMQ facilitates seamless communication between these microservices. Elasticsearch plays a crucial role in optimizing the search functionality, ensuring rapid and accurate product retrieval. The microservices design allows for independent development and scaling of each module, enhancing adaptability and maintainability.
 
 ## Table of Contents
 
@@ -13,25 +13,26 @@ This repository contains the backend services for an e-commerce application buil
 ## Authentication Service
 
 ### Features
-- Guest user and registered user authentication
 - User registration
+- Getting user by id
+- User authentication using jwt
 
 ### Endpoints
-- `/api/auth/register` - Register a new user
-- `/api/auth/login` - User login
+- `/api/users/signup` - Register a new user
+- `/api/users/login` - User login
+- `/api/users/:userId` - gets single user info
 
 ## Cart Service
 
 ### Features
 - Add products to the cart
-- Create and manage user carts
 - Remove items from the cart
 - Adjust quantity of items in the cart
 
 ### Endpoints
-- `/api/cart/add` - Add a product to the cart
-- `/api/cart/remove` - Remove a product from the cart
-- `/api/cart/quantity` - Adjust quantity of items in the cart
+- `/api/cart/add/:productId` - Add a product to the cart
+- `/api/cart/remove/:productId` - Remove a product from the cart
+- `/api/cart/quantity/:productId` - Adjust quantity of items in the cart
 
 ## Order Service
 
@@ -41,29 +42,27 @@ This repository contains the backend services for an e-commerce application buil
 - Secure checkout process
 
 ### Endpoints
-- `/api/order/create` - Create a new order
-- `/api/order/complete` - Complete the order and delete the cart
+- `/api/checkout` - Create a new order, completes order and delete the cart
 
 ## Catalog Service
 
 ### Features
-- Manage a catalog of 100 products
-- Organize products into 5 categories with brands
+- Manage a catalog
+- Organized retrieval of products
+- Queries for paginated retrieval of products
 
 ### Endpoints
-- `/api/catalog/products` - Get all products
-- `/api/catalog/categories` - Get all categories
-- `/api/catalog/brands` - Get all brands
+- `/api/catalog/products` - Get all products (can be paginated and filtered using query)
+- `/api/catalog/categories` - POST Add product 
 
 ## Search Service (Optional)
 
 ### Features
-- Index products in Elasticsearch for search functionality
 - Search products by title
 - Add new products to the Elasticsearch indices
 
 ### Endpoints
-- `/api/search` - Search for products by title
+- `/api/documents/search` - Search for products by title using query
 - `/api/search/add` - Add a new product to the search indices
 
 ## Installation
