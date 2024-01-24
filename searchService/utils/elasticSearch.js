@@ -1,5 +1,3 @@
-// elasticsearchModule.js
-
 const elasticsearch = require('elasticsearch');
 const products = require('../DATA');
 
@@ -10,9 +8,7 @@ const client = new elasticsearch.Client({
 
 const initIndex = async () => {
   try {
-    const indexName = 'products'; // Replace with your desired index name
-    // await client.indices.delete({index: indexName})
-    // return
+    const indexName = 'products';
     const exists = await client.indices.exists({ index: indexName });
 
     if (!exists) {
