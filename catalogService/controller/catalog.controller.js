@@ -19,12 +19,10 @@ const createProduct = async (req, res) => {
     description
   } = req.body;
 
-  // Validate required fields
   if (!title || !price || !category || !description) {
     throw new ExpressError('Name, price, Description and category are required fields', 400);
   }
   
-  // Create a new product
   const newProduct = new Product({
     title,
     price,
@@ -32,13 +30,17 @@ const createProduct = async (req, res) => {
     description
   });
 
-  // Save the new product to the database
   const savedProduct = await newProduct.save();
-
   res.status(201).json({message: "Successfully created a product", product: savedProduct});
+}
+
+const getAllCategories = async (req, res) => {
+  const categories = await Product.distinct("category")
+  return res.status(200).json({message: "Successfully retrieved the categories", categories})
 }
 
 module.exports = {
   getProducts,
-  createProduct
+  createProduct,
+  getAllCategories
 }

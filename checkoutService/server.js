@@ -4,11 +4,24 @@ const connectDB = require("./db/db.connection")
 const checkoutRouter = require("./router/checkout.router")
 const ExpressError = require("../middleware/ExpressError")
 const messageBroker = require("./utils/messageBroker")
+const Order = require("./model/Order")
 const app = express()
 const port = process.env.PORT || 3003
 
 connectDB()
-messageBroker.connect()
+
+messageBroker.connect().then((channel) => {
+  // console.log(channel)
+  channel.consume("checkout_detail_queue", async (data) => {
+    const userId= JSON.parse(data.content)
+    console.log(userId)
+    const orders = await Order.find({user: userId})
+    console.log(orders)
+    channel.ack(data)
+    channel.sendToQueue("user_orders_detail_queue", Buffer.from(JSON.stringify(orders)))
+  })
+})
+
 app.use(express.json())
 
 app.use("/api/checkout", checkoutRouter)

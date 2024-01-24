@@ -7,18 +7,26 @@ class MessageBroker {
 
   async connect() {
     console.log("Connecting to RabbitMQ...");
-
-    setTimeout(async () => {
-      try {
-        const connection = await amqp.connect("amqp://guest:guest@localhost:5672");
-        this.channel = await connection.createChannel();
-        await this.channel.assertQueue("checkout_user_detail_queue");
-        await this.channel.assertQueue("checkout_product_costing_queue");
-        console.log("RabbitMQ connected");
-      } catch (err) {
-        console.error("Failed to connect to RabbitMQ:", err.message);
-      }
-    }, 2000); // delay 10 seconds to wait for RabbitMQ to start
+    const connection = await amqp.connect("amqp://guest:guest@localhost:5672");
+    this.channel = await connection.createChannel();
+    await this.channel.assertQueue("checkout_user_detail_queue");
+    await this.channel.assertQueue("checkout_product_costing_queue");
+    await this.channel.assertQueue("checkout_detail_queue")
+    console.log("RabbitMQ connected");
+    return this.channel
+    // setTimeout(async () => {
+    //   try {
+    //     const connection = await amqp.connect("amqp://guest:guest@localhost:5672");
+    //     this.channel = await connection.createChannel();
+    //     await this.channel.assertQueue("checkout_user_detail_queue");
+    //     await this.channel.assertQueue("checkout_product_costing_queue");
+    //     await this.channel.assertQueue("checkout_detail_queue")
+    //     console.log("RabbitMQ connected");
+    //     return this.channel
+    //   } catch (err) {
+    //     console.error("Failed to connect to RabbitMQ:", err.message);
+    //   }
+    // }, );
   }
 
   async publishMessage(queue, message) {

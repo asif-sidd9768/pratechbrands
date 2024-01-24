@@ -11,6 +11,8 @@ const client = new elasticsearch.Client({
 const initIndex = async () => {
   try {
     const indexName = 'products'; // Replace with your desired index name
+    // await client.indices.delete({index: indexName})
+    // return
     const exists = await client.indices.exists({ index: indexName });
 
     if (!exists) {
@@ -19,7 +21,7 @@ const initIndex = async () => {
       const indexPromises = products.map(product => {
         return client.index({
           index: indexName,
-          type: 'product', // Assuming 'product' is the type for your documents
+          type: 'product', 
           body: {
             price: { type: 'float' },
             ...product

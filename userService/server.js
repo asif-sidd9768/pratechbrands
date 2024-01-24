@@ -23,7 +23,9 @@ async function setupRabbitMQConsumers() {
   channel.consume("user_cart_clear_queue", (data) => userQueueHandlers.handleUserCartClearQueue(data, channel));
 }
 
-setupRabbitMQConsumers().then(() => {
+setupRabbitMQConsumers().then((channel) => {
+  // console.log(channel)
+
   app.use((err, req, res, next) => {
     if (err instanceof ExpressError) {
       return res.status(err.statusCode).json({ error: err.message });

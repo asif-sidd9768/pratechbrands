@@ -9,6 +9,7 @@ const connectToRabbitMQ = async () => {
   await channel.assertQueue("user_product_quantity_queue")
   await channel.assertQueue("user_detail_queue")
   await channel.assertQueue("user_cart_clear_queue")
+  await channel.assertQueue("user_orders_detail_queue")
   console.log("COONECTED TO RABBITMQ")
   return channel
 }

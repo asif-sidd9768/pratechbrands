@@ -51,7 +51,6 @@ async function handleUserCartClearQueue(data, channel) {
     const { userId } = JSON.parse(data.content);
     const user = await User.findById(userId);
     user.cart = undefined;
-    console.log(user);
     await user.save();
     channel.ack(data);
   } catch (error) {
