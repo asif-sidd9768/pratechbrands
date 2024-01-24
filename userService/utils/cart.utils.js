@@ -4,7 +4,6 @@ const addProductToUserCart = async (newProductId, userId) => {
   const user = await User.findById(userId)
   if(user.cart){
     const isProductExist = user.cart.find(({productId}) => productId === newProductId )
-    // console.log(isProductExist)
     if(isProductExist){
       user.cart = user.cart.map(product => product.productId === newProductId ? ({...product, quantity: product.quantity+1}) : product)
     }else {

@@ -16,6 +16,5 @@ products.map(async (product) => {
 
   await newProduct.save()
   console.log(newProduct)
-  // mongoose.disconnect()
 })
 

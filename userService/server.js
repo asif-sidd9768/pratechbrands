@@ -24,8 +24,6 @@ async function setupRabbitMQConsumers() {
 }
 
 setupRabbitMQConsumers().then((channel) => {
-  // console.log(channel)
-
   app.use((err, req, res, next) => {
     if (err instanceof ExpressError) {
       return res.status(err.statusCode).json({ error: err.message });

@@ -11,12 +11,9 @@ const port = process.env.PORT || 3003
 connectDB()
 
 messageBroker.connect().then((channel) => {
-  // console.log(channel)
   channel.consume("checkout_detail_queue", async (data) => {
     const userId= JSON.parse(data.content)
-    console.log(userId)
     const orders = await Order.find({user: userId})
-    console.log(orders)
     channel.ack(data)
     channel.sendToQueue("user_orders_detail_queue", Buffer.from(JSON.stringify(orders)))
   })
@@ -28,7 +25,6 @@ app.use("/api/checkout", checkoutRouter)
 
 app.use((err, req, res, next) => {
   if (err instanceof ExpressError) {
-    console.log("INSIDDE ERR of ERRR")
     return res.status(err.statusCode).json({ error: err.message });
   }
   next(err);

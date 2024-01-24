@@ -19,7 +19,6 @@ const signup = async (req, res) => {
   await newUser.save();
 
   const userResponse = newUser.toObject();
-  console.log(newUser)
   delete userResponse.password;
 
   res.status(201).json({ message: 'Signup successful', user: userResponse });
